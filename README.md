@@ -291,3 +291,29 @@ TOTAL                                    40     11    72%
       run: |
         pipenv run codecov
 ```
+
+<b>Instalar a lib python Decouple</b>
+
+```
+CondGuai-Acu $ pipenv install 'python-decouple'
+
+=> Alterar a configuração do settings.py DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
+
+=> Criar o file .env na raiz do projeto
+DEBUG=True
+
+=> Criar o diretório contrib na raiz do projeto
+- criar o env-sample dentro do diretório contrib
+- DEBUG=FALSE
+
+=> configurar a variavel no heroku 
+(CondGuai-Acu) GuaiAcu $ heroku config:set DEBUG=False
+Setting DEBUG and restarting ⬢ condguaiacu... done, v13
+DEBUG: False
+
+=> Alterar o file pythonapp.yml
+    - name: Copying configurations
+      run: |
+        cp contrib/env-sample .env
+```
