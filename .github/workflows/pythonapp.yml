@@ -22,5 +22,11 @@ jobs:
         pipenv run flake8 .
     - name: Test with pytest
       run: |
-        pipenv run pytest GuaiAcu .
+        pipenv run pytest GuaiAcu --cov=GuaiAcu
+    - name: Posting Coverage
+      env:
+        CODECOV_TOKEN: "98f15345-4725-46ec-b7ff-d18a226fdfac"
+      run: |
+        pipenv run codecov
+
 
