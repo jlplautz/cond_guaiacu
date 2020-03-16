@@ -4,6 +4,8 @@ Aplicação para gerenciar condominio do Edifício Colina do Guai-Açu
 ![Python application](https://github.com/jlplautz/CondGuai-Acu/workflows/Python%20application/badge.svg)
 [![Updates](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/shield.svg)](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/)
 [![Python 3](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/python-3-shield.svg)](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/)
+[![codecov](https://codecov.io/gh/jlplautz/course-django/branch/master/graph/badge.svg)](https://codecov.io/gh/jlplautz/course-django)
+
 
 
 <h1>Procedimento executado</h1>
@@ -242,5 +244,50 @@ CondGuai-Acu $ pipenv install -d pytest-django
 => criar o file pytest.ini
 [pytest]
 DJANGO_SETTINGS_MODULE = GuaiAcu.settings
+```
 
+<b>Criado app base com django no projeto</b>
+
+```
+CondGuai-Acu $ pipenv install --dev 'pytest-cov' codecov
+
+
+=> Rodar os tests com CODECOV
+(CondGuai-Acu) CondGuai-Acu $ pipenv run pytest --cov=GuaiAcu
+platform linux -- Python 3.8.0, pytest-5.4.1, py-1.8.1, pluggy-0.13.1
+django: settings: GuaiAcu.settings (from ini)
+rootdir: /home/plautz/PycharmProjects/CondGuai-Acu, inifile: pytest.ini
+plugins: django-3.8.0, cov-2.8.1
+collected 1 item                                                                                                                  
+
+GuaiAcu/base/tests/test_home.py .                                                                                           [100%]
+
+----------- coverage: platform linux, python 3.8.0-final-0 -----------
+Name                                  Stmts   Miss  Cover
+---------------------------------------------------------
+GuaiAcu/__init__.py                       0      0   100%
+GuaiAcu/asgi.py                           4      4     0%
+GuaiAcu/base/__init__.py                  0      0   100%
+GuaiAcu/base/admin.py                     0      0   100%
+GuaiAcu/base/apps.py                      3      3     0%
+GuaiAcu/base/migrations/__init__.py       0      0   100%
+GuaiAcu/base/models.py                    0      0   100%
+GuaiAcu/base/tests/__init__.py            0      0   100%
+GuaiAcu/base/tests/test_home.py           4      0   100%
+GuaiAcu/base/views.py                     3      0   100%
+GuaiAcu/settings.py                      18      0   100%
+GuaiAcu/urls.py                           4      0   100%
+GuaiAcu/wsgi.py                           4      4     0%
+---------------------------------------------------------
+TOTAL                                    40     11    72%
+
+=> Alterar o file pythonapp.yml
+    - name: Test with pytest
+      run: |
+        pipenv run pytest GuaiAcu --cov=GuaiAcu
+    - name: Posting Coverage
+      env:
+        CODECOV_TOKEN: "98f15345-4725-46ec-b7ff-d18a226fdfac"
+      run: |
+        pipenv run codecov
 ```
