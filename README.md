@@ -176,3 +176,27 @@ Quit the server with CONTROL-C.
 ```
 (CondGuai-Acu) CondGuai-Acu $ pipenv install --dev  pytest-cov codecov
 ```
+
+<b>Publicar projeto no Heroku</b>
+```
+ALLOWED_HOSTS = [] => ALLOWED_HOSTS = ['*']
+
+Criar o file Procfile para salientar ao heroku como nossa aplicação vai rodar
+     => web: gunicorn GuaiAcu.wsgi --log-file -
+
+Instalar o gunicorn (dependencia em produção não é uma pendencia de desenvolvimento)
+CondGuai-Acu $ pipenv install gunicorn
+
+Criar um applicação no Heroku e publicar o projeto
+CondGuai-Acu $ heroku apps:create condguaiacu
+Creating ⬢ condguaiacu... done
+https://condguaiacu.herokuapp.com/ | https://git.heroku.com/condguaiacu.git
+
+(CondGuai-Acu) CondGuai-Acu $ git remote -v
+heroku  https://git.heroku.com/condguaiacu.git (fetch)
+heroku  https://git.heroku.com/condguaiacu.git (push)
+origin  git@github.com:jlplautz/CondGuai-Acu.git (fetch)
+origin  git@github.com:jlplautz/CondGuai-Acu.git (push)
+
+(CondGuai-Acu) CondGuai-Acu $ heroku config:set DISABLE_COLLECTSTATIC=1
+```
