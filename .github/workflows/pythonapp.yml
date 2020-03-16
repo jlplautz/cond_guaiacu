@@ -31,5 +31,3 @@ jobs:
         CODECOV_TOKEN: "98f15345-4725-46ec-b7ff-d18a226fdfac"
       run: |
         pipenv run codecov
-
-
