@@ -200,3 +200,47 @@ origin  git@github.com:jlplautz/CondGuai-Acu.git (push)
 
 (CondGuai-Acu) CondGuai-Acu $ heroku config:set DISABLE_COLLECTSTATIC=1
 ```
+
+<b>Criado app base com django no projeto</b>
+```
+(CondGuai-Acu) GuaiAcu $ mng startapp base
+(CondGuai-Acu) GuaiAcu $ tree
+.
+├── asgi.py
+├── base
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── __init__.py
+├── __pycache__
+│   ├── __init__.cpython-38.pyc
+│   ├── settings.cpython-38.pyc
+│   ├── urls.cpython-38.pyc
+│   └── wsgi.cpython-38.pyc
+├── settings.py
+├── urls.py
+└── wsgi.py
+
+=> uma view simples consiste em uma função que chamaremos home
+def home(request):
+    return HttpRequest('Olá Django')
+
+=> Alterar a configuração do file setting.py
+   'GuaiAcu.base',
+
+=> fazer o mapeamento da função que se encontra na views
+   path('', home),
+
+=> instalar o plugin pytet-django
+CondGuai-Acu $ pipenv install -d pytest-django
+
+=> criar o file pytest.ini
+[pytest]
+DJANGO_SETTINGS_MODULE = GuaiAcu.settings
+
+```
