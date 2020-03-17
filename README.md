@@ -346,3 +346,22 @@ Type "help", "copyright", "credits" or "license" for more information.
 Setting SECRET_KEY and restarting ⬢ condguaiacu... done, v17
 SECRET_KEY: ***************************************************
 ```
+
+# Criar dominio e Allowed_Hots
+
+<b>=> no heroku criar o domains</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku domains:add guaiacu.lindart.com.br
+
+<b>=> Para verificar o domains</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku domains
+
+<b>=> No Cloudflare</b>
+> criar CNAME record 
+> guaiacu.<domain criado no heroku>
+
+<b>=> No settings vamos configurar os dois dominios</b>
+> atual => ALLOWED_HOSTS = ['*']
+>configurado => ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+<b>=> Heroku configurar ALLOWED_HOSTS</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku config:set ALLOWED_HOSTS='condguaiacu.herokuapp.com, guaiacu.lindart.com.br'
