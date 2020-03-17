@@ -292,7 +292,7 @@ TOTAL                                    40     11    72%
         pipenv run codecov
 ```
 
-<b>Instalar a lib python Decouple</b>
+# Instalar a lib python Decouple
 
 ```
 CondGuai-Acu $ pipenv install 'python-decouple'
@@ -316,4 +316,33 @@ DEBUG: False
     - name: Copying configurations
       run: |
         cp contrib/env-sample .env
+```
+
+#  Seting para Secret key 
+```
+Secret key é utiliazada em vários pontos com necessidade de assinatura criptografa dentro do django
+- as sessoes que são arquivos que são enviados ao navegador para ele  manter o usuario logado
+- envio de mensagens
+- quando vai fazer o reset do password quando estiver o sistema de login
+- esta configuração deve ser mantida em segredo, vamos usar o python decouple para setar esta 
+  chave secreta no servidor. Para cada instancia possa definir sua chave secreta
+
+=> temos que atualizar o file o env_sample
+SECRET_KEY=defina sua chave secreta 
+
+=> Da mesma forma temos que definir no file .env
+SECRET_KEY=CHAVE SECRETA
+
+=> Defini a Secret_Key em uma variavel de ambiente para evitar problema com Heroku
+(CondGuai-Acu) CondGuai-Acu $ python
+Python 3.8.0 (default, Feb  3 2020, 16:24:25) 
+[GCC 7.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from django.core.management.utils import get_random_secret_key
+>>> get_random_secret_key()
+'u8ip6ga0kt-6s42ls(=t2dfr4)h28^apidi-%if-jk4vio&6_z'
+>>> 
+(CondGuai-Acu) CondGuai-Acu $ heroku config:set SECRET_KEY='u8ip6ga0kt-6s42ls(=t2dfr4)h28^apidi-%if-jk4vio&6_z'
+Setting SECRET_KEY and restarting ⬢ condguaiacu... done, v17
+SECRET_KEY: u8ip6ga0kt-6s42ls(=t2dfr4)h28^apidi-%if-jk4vio&6_z
 ```
