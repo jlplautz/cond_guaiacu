@@ -340,9 +340,9 @@ Python 3.8.0 (default, Feb  3 2020, 16:24:25)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from django.core.management.utils import get_random_secret_key
 >>> get_random_secret_key()
-'u8ip6ga0kt-6s42ls(=t2dfr4)h28^apidi-%if-jk4vio&6_z'
+'***************************************************'
 >>> 
 (CondGuai-Acu) CondGuai-Acu $ heroku config:set SECRET_KEY='u8ip6ga0kt-6s42ls(=t2dfr4)h28^apidi-%if-jk4vio&6_z'
 Setting SECRET_KEY and restarting ⬢ condguaiacu... done, v17
-SECRET_KEY: u8ip6ga0kt-6s42ls(=t2dfr4)h28^apidi-%if-jk4vio&6_z
+SECRET_KEY: ***************************************************
 ```
