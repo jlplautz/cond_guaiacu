@@ -246,13 +246,13 @@ CondGuai-Acu $ pipenv install -d pytest-django
 DJANGO_SETTINGS_MODULE = GuaiAcu.settings
 ```
 
-<b>Criado app base com django no projeto</b>
+# Criado app base com django no projeto
 
+<b>=> Instalar as libs pytest-cov' e codecov</b>
+>CondGuai-Acu $ pipenv install --dev 'pytest-cov' codecov
+
+<b>=> Rodar os tests com CODECOV</b>
 ```
-CondGuai-Acu $ pipenv install --dev 'pytest-cov' codecov
-
-
-=> Rodar os tests com CODECOV
 (CondGuai-Acu) CondGuai-Acu $ pipenv run pytest --cov=GuaiAcu
 platform linux -- Python 3.8.0, pytest-5.4.1, py-1.8.1, pluggy-0.13.1
 django: settings: GuaiAcu.settings (from ini)
@@ -280,8 +280,9 @@ GuaiAcu/urls.py                           4      0   100%
 GuaiAcu/wsgi.py                           4      4     0%
 ---------------------------------------------------------
 TOTAL                                    40     11    72%
-
-=> Alterar o file pythonapp.yml
+```
+<b>=> Alterar o file pythonapp.yml</b>
+```
     - name: Test with pytest
       run: |
         pipenv run pytest GuaiAcu --cov=GuaiAcu
@@ -294,25 +295,28 @@ TOTAL                                    40     11    72%
 
 # Instalar a lib python Decouple
 
+<b>=> Instalar lib 'python-decouple'</b>
+>CondGuai-Acu $ pipenv install 'python-decouple'
+
+<b>=> Alterar a configuração do settings.py DEBUG = True</b>
+>DEBUG = config('DEBUG', cast=bool)
+
+<b>=> Criar o file .env na raiz do projeto</b>
+>DEBUG=True
+
+<b>=> Criar o diretório contrib na raiz do projeto</b>
+> criar o env-sample dentro do diretório contrib
+> DEBUG=FALSE
+
+<b>=> configurar a variavel no heroku</b>
 ```
-CondGuai-Acu $ pipenv install 'python-decouple'
-
-=> Alterar a configuração do settings.py DEBUG = True
-DEBUG = config('DEBUG', cast=bool)
-
-=> Criar o file .env na raiz do projeto
-DEBUG=True
-
-=> Criar o diretório contrib na raiz do projeto
-- criar o env-sample dentro do diretório contrib
-- DEBUG=FALSE
-
-=> configurar a variavel no heroku 
 (CondGuai-Acu) GuaiAcu $ heroku config:set DEBUG=False
 Setting DEBUG and restarting ⬢ condguaiacu... done, v13
 DEBUG: False
+```
 
-=> Alterar o file pythonapp.yml
+<b>=> Alterar o file pythonapp.yml</b>
+```
     - name: Copying configurations
       run: |
         cp contrib/env-sample .env
@@ -389,3 +393,13 @@ DATABASES = {
 >CondGuai-Acu $ pipenv install dj-database-url
 >CondGuai-Acu $ pipenv install psycopg2-binary
 
+# Testes com Postgresql 
+
+<b>Instalar o postgresql no servidor de integraçã continua no file pythonapp.yml</b>
+```
+    services:
+      postgres:
+        image: postgres:12.0
+```
+<b>Adicionar informação no file env-sample para conter:</b>
+>DATABASE_URL=postgres://postgres:postgres@localhost/testdb
