@@ -319,21 +319,22 @@ DEBUG: False
 ```
 
 #  Seting para Secret key 
-```
-Secret key é utiliazada em vários pontos com necessidade de assinatura criptografa dentro do django
-- as sessoes que são arquivos que são enviados ao navegador para ele  manter o usuario logado
-- envio de mensagens
-- quando vai fazer o reset do password quando estiver o sistema de login
-- esta configuração deve ser mantida em segredo, vamos usar o python decouple para setar esta 
+
+<b>Secret key é utiliazada em vários pontos com necessidade de assinatura criptografa dentro do django</b>
+> as sessoes que são arquivos que são enviados ao navegador para ele  manter o usuario logado
+> envio de mensagens
+> quando vai fazer o reset do password quando estiver o sistema de login
+> esta configuração deve ser mantida em segredo, vamos usar o python decouple para setar esta 
   chave secreta no servidor. Para cada instancia possa definir sua chave secreta
 
-=> temos que atualizar o file o env_sample
-SECRET_KEY=defina sua chave secreta 
+<b>=> temos que atualizar o file o env_sample</b>
+>SECRET_KEY=defina sua chave secreta 
 
-=> Da mesma forma temos que definir no file .env
-SECRET_KEY=CHAVE SECRETA
+<b>=> Da mesma forma temos que definir no file .env</b>
+>SECRET_KEY=CHAVE SECRETA
 
-=> Defini a Secret_Key em uma variavel de ambiente para evitar problema com Heroku
+<b>=> Defini a Secret_Key em uma variavel de ambiente para evitar problema com Heroku</b>
+```
 (CondGuai-Acu) CondGuai-Acu $ python
 Python 3.8.0 (default, Feb  3 2020, 16:24:25) 
 [GCC 7.4.0] on linux
@@ -361,7 +362,30 @@ SECRET_KEY: ***************************************************
 
 <b>=> No settings vamos configurar os dois dominios</b>
 > atual => ALLOWED_HOSTS = ['*']
->configurado => ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+> configurado => ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 <b>=> Heroku configurar ALLOWED_HOSTS</b>
 >(CondGuai-Acu) CondGuai-Acu $ heroku config:set ALLOWED_HOSTS='condguaiacu.herokuapp.com, guaiacu.lindart.com.br'
+
+# Endereço de Banco de Dados
+
+<b>No arquivo setting.py esta definido um BD padrão default, como sendo na realidade sqlite3.</b>
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+```
+
+<b> Vamos inserir a variável DATABASE-URL no settings</b> 
+
+>default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+>parse_database = partial(dj_database_url.parse, conn_max_age=600)
+>DATABASES = {'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)}
+
+<b>Inserido as libs j-database-url e psycopg2-binary</b>
+>CondGuai-Acu $ pipenv install dj-database-url
+>CondGuai-Acu $ pipenv install psycopg2-binary
+
