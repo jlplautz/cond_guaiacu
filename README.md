@@ -403,3 +403,15 @@ DATABASES = {
 ```
 <b>Adicionar informação no file env-sample para conter:</b>
 >DATABASE_URL=postgres://postgres:postgres@localhost/testdb
+
+# Corrig lingua e Fuso Horário
+
+<b>configurar a língua  (file settings_py)</b>
+
+|   LANGUAGE_CODE  |    TIME_ZONE   |   
+|------------------|----------------|
+|   'en-us'        |    'UTC'       |
+
+|   LANGUAGE_CODE  |    TIME_ZONE      |   
+|------------------|-------------------|
+|   'pt-br'        |'America/Sao_Paulo'|
