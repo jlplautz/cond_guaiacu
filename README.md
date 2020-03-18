@@ -415,3 +415,29 @@ DATABASES = {
 |   LANGUAGE_CODE  |    TIME_ZONE      |   
 |------------------|-------------------|
 |   'pt-br'        |'America/Sao_Paulo'|
+
+# Comando de Coleta de Arquivos Estáticos
+
+<b>Acessando via linha de comando com o env ativado</b>
+>(CondGuai-Acu) CondGuai-Acu $ mng collectstatic
+
+<b>Criar no file settings.py</b>
+>STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+<b>Acessando via linha de comando com o env ativado</b>
+>(CondGuai-Acu) CondGuai-Acu $ mng collectstatic
+
+
+```
+130 static files copied to '/home/plautz/PycharmProjects/CondGuai-Acu/staticfiles'.
+staticfiles
+    admin  
+        css
+        fonts
+        img 
+        js
+```
+<b>inserir diretorio staticfiles no gitignore</b>
+>mediafiles/
+>
+>staticfiles/
