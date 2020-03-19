@@ -546,3 +546,20 @@ AWS_STORAGE_BUCKET_NAME=
 
 <b>STORAGE CONFIGURATION IN S3 AWS</b>
 >COLLECTFAST_ENABLED = True
+
+# Sobrescrever a Classe User 
+
+<b>no file models.py</b>
+> Criar a class User que herda da class AbstractUser
+>
+>Fazer as adptações pois a nasse User nao tem atributo username
+
+|-------------------------------|----------------------------|
+|   USERNAME_FIELD = 'username' |   USERNAME_FIELD = 'email' |
+|-------------------------------|----------------------------|
+
+<b>Criar a classe UserManager herdando  da class UserManager(BaseUsermanager)</b>
+>Fazer as adptações pois a nasse User nao tem atributo username
+
+<b>file settings informar ao frameworking qual será a classe base utilizada  como usuario</b>
+>AUTH_USER_MODEL = 'base.User'
