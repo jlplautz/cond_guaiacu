@@ -109,19 +109,14 @@ jobs:
         pipenv run flake8 .
 ```
 
-<b>Instalar lib django</b>
-```
-CondGuai-Acu $ pipenv install django
-```
+# Instalar lib django
+>CondGuai-Acu $ pipenv install django
 
-<b>Ferramentas basicas do Django (linha de comando)</b>
+# Ferramentas basicas do Django (linha de comando)
 ```
 (CondGuai-Acu) CondGuai-Acu $ django-admin
-
 Type 'django-admin help <subcommand>' for help on a specific subcommand.
-
 Available subcommands:
-
 [django]
     check
     compilemessages
@@ -179,7 +174,7 @@ Quit the server with CONTROL-C.
 (CondGuai-Acu) CondGuai-Acu $ pipenv install --dev  pytest-cov codecov
 ```
 
-<b>Publicar projeto no Heroku</b>
+# Publicar projeto no Heroku
 ```
 ALLOWED_HOSTS = [] => ALLOWED_HOSTS = ['*']
 
@@ -203,7 +198,7 @@ origin  git@github.com:jlplautz/CondGuai-Acu.git (push)
 (CondGuai-Acu) CondGuai-Acu $ heroku config:set DISABLE_COLLECTSTATIC=1
 ```
 
-<b>Criado app base com django no projeto</b>
+# Criado app base com django no projeto
 ```
 (CondGuai-Acu) GuaiAcu $ mng startapp base
 (CondGuai-Acu) GuaiAcu $ tree
@@ -227,21 +222,25 @@ origin  git@github.com:jlplautz/CondGuai-Acu.git (push)
 ├── settings.py
 ├── urls.py
 └── wsgi.py
+```
 
-=> uma view simples consiste em uma função que chamaremos home
+<b>=> uma view simples consiste em uma função que chamaremos home</b>
+```
 def home(request):
     return HttpRequest('Olá Django')
+```
 
-=> Alterar a configuração do file setting.py
-   'GuaiAcu.base',
+<b>=> Alterar a configuração do file setting.py</b>
+>   'GuaiAcu.base',
 
-=> fazer o mapeamento da função que se encontra na views
-   path('', home),
+<b>=> fazer o mapeamento da função que se encontra na views</b>
+>   path('', home),
 
-=> instalar o plugin pytet-django
-CondGuai-Acu $ pipenv install -d pytest-django
+<b>=> instalar o plugin pytet-django</b>
+>CondGuai-Acu $ pipenv install -d pytest-django
 
-=> criar o file pytest.ini
+<b>=> criar o file pytest.ini</b>
+```
 [pytest]
 DJANGO_SETTINGS_MODULE = GuaiAcu.settings
 ```
@@ -404,7 +403,7 @@ DATABASES = {
 <b>Adicionar informação no file env-sample para conter:</b>
 >DATABASE_URL=postgres://postgres:postgres@localhost/testdb
 
-# Corrig lingua e Fuso Horário
+# Corrigir lingua e Fuso Horário
 
 <b>configurar a língua  (file settings_py)</b>
 
@@ -446,9 +445,9 @@ staticfiles
 
 <b> inserir no file .env</b>
 
->AWS_ACCESS_KEY_ID=AKIAJPRT4AXXQVG5OCYA
+>AWS_ACCESS_KEY_ID=********************
 >
->AWS_SECRET_ACCESS_KEY=cHTVyre3sKHH3n5O6rh7Fu93m9uPsfKrkHrQMTXO
+>AWS_SECRET_ACCESS_KEY=****************************************
 >
 >AWS_STORAGE_BUCKET_NAME=coursedjango
 
