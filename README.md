@@ -441,3 +441,34 @@ staticfiles
 >mediafiles/
 >
 >staticfiles/
+
+# Usuario na Amazon e  S3 criação e configuração
+
+<b> inserir no file .env</b>
+
+>AWS_ACCESS_KEY_ID=AKIAJPRT4AXXQVG5OCYA
+>
+>AWS_SECRET_ACCESS_KEY=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
+>
+>AWS_STORAGE_BUCKET_NAME=coursedjango
+
+<b> S3 => Scalable Storage in the Cloud</b>
+
+- Criar o  S3 Bucket 
+  https://s3.console.aws.amazon.com/s3/home?region=us-east-2
+  
+- Alterar as Permissions do diretorio Bucket
+
+- Setting => Bucket Policy
+  condcguaiacu
+ 
+- Para facilitar a criação da Policy procurar no google => amazon policy generator
+step-1  Type pf Policy => S3 Bucket Policy
+step-2  Add Statements  
+  - Effect Allow
+  - Principal (copiar no user summary o User ARN)
+  - Actions => All Actions (‘*’)
+  - Amozon Resource Name (ARN) => copiar na pagina Bucket policy editor 
+  - Generate Policy
+  - Copiar o arquivo de policy (formato JSON Document) e voltar para a 
+    pagina Bucket Policy para colar a politica. E salvar esta configuração
