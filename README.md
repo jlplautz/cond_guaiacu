@@ -109,19 +109,14 @@ jobs:
         pipenv run flake8 .
 ```
 
-<b>Instalar lib django</b>
-```
-CondGuai-Acu $ pipenv install django
-```
+# Instalar lib django
+>CondGuai-Acu $ pipenv install django
 
-<b>Ferramentas basicas do Django (linha de comando)</b>
+# Ferramentas basicas do Django (linha de comando)
 ```
 (CondGuai-Acu) CondGuai-Acu $ django-admin
-
 Type 'django-admin help <subcommand>' for help on a specific subcommand.
-
 Available subcommands:
-
 [django]
     check
     compilemessages
@@ -179,7 +174,7 @@ Quit the server with CONTROL-C.
 (CondGuai-Acu) CondGuai-Acu $ pipenv install --dev  pytest-cov codecov
 ```
 
-<b>Publicar projeto no Heroku</b>
+# Publicar projeto no Heroku
 ```
 ALLOWED_HOSTS = [] => ALLOWED_HOSTS = ['*']
 
@@ -203,7 +198,7 @@ origin  git@github.com:jlplautz/CondGuai-Acu.git (push)
 (CondGuai-Acu) CondGuai-Acu $ heroku config:set DISABLE_COLLECTSTATIC=1
 ```
 
-<b>Criado app base com django no projeto</b>
+# Criado app base com django no projeto
 ```
 (CondGuai-Acu) GuaiAcu $ mng startapp base
 (CondGuai-Acu) GuaiAcu $ tree
@@ -227,32 +222,36 @@ origin  git@github.com:jlplautz/CondGuai-Acu.git (push)
 ├── settings.py
 ├── urls.py
 └── wsgi.py
+```
 
-=> uma view simples consiste em uma função que chamaremos home
+<b>=> uma view simples consiste em uma função que chamaremos home</b>
+```
 def home(request):
     return HttpRequest('Olá Django')
+```
 
-=> Alterar a configuração do file setting.py
-   'GuaiAcu.base',
+<b>=> Alterar a configuração do file setting.py</b>
+>   'GuaiAcu.base',
 
-=> fazer o mapeamento da função que se encontra na views
-   path('', home),
+<b>=> fazer o mapeamento da função que se encontra na views</b>
+>   path('', home),
 
-=> instalar o plugin pytet-django
-CondGuai-Acu $ pipenv install -d pytest-django
+<b>=> instalar o plugin pytet-django</b>
+>CondGuai-Acu $ pipenv install -d pytest-django
 
-=> criar o file pytest.ini
+<b>=> criar o file pytest.ini</b>
+```
 [pytest]
 DJANGO_SETTINGS_MODULE = GuaiAcu.settings
 ```
 
-<b>Criado app base com django no projeto</b>
+# Criado app base com django no projeto
 
+<b>=> Instalar as libs pytest-cov' e codecov</b>
+>CondGuai-Acu $ pipenv install --dev 'pytest-cov' codecov
+
+<b>=> Rodar os tests com CODECOV</b>
 ```
-CondGuai-Acu $ pipenv install --dev 'pytest-cov' codecov
-
-
-=> Rodar os tests com CODECOV
 (CondGuai-Acu) CondGuai-Acu $ pipenv run pytest --cov=GuaiAcu
 platform linux -- Python 3.8.0, pytest-5.4.1, py-1.8.1, pluggy-0.13.1
 django: settings: GuaiAcu.settings (from ini)
@@ -280,8 +279,9 @@ GuaiAcu/urls.py                           4      0   100%
 GuaiAcu/wsgi.py                           4      4     0%
 ---------------------------------------------------------
 TOTAL                                    40     11    72%
-
-=> Alterar o file pythonapp.yml
+```
+<b>=> Alterar o file pythonapp.yml</b>
+```
     - name: Test with pytest
       run: |
         pipenv run pytest GuaiAcu --cov=GuaiAcu
@@ -294,46 +294,50 @@ TOTAL                                    40     11    72%
 
 # Instalar a lib python Decouple
 
+<b>=> Instalar lib 'python-decouple'</b>
+>CondGuai-Acu $ pipenv install 'python-decouple'
+
+<b>=> Alterar a configuração do settings.py DEBUG = True</b>
+>DEBUG = config('DEBUG', cast=bool)
+
+<b>=> Criar o file .env na raiz do projeto</b>
+>DEBUG=True
+
+<b>=> Criar o diretório contrib na raiz do projeto</b>
+> criar o env-sample dentro do diretório contrib
+> DEBUG=FALSE
+
+<b>=> configurar a variavel no heroku</b>
 ```
-CondGuai-Acu $ pipenv install 'python-decouple'
-
-=> Alterar a configuração do settings.py DEBUG = True
-DEBUG = config('DEBUG', cast=bool)
-
-=> Criar o file .env na raiz do projeto
-DEBUG=True
-
-=> Criar o diretório contrib na raiz do projeto
-- criar o env-sample dentro do diretório contrib
-- DEBUG=FALSE
-
-=> configurar a variavel no heroku 
 (CondGuai-Acu) GuaiAcu $ heroku config:set DEBUG=False
 Setting DEBUG and restarting ⬢ condguaiacu... done, v13
 DEBUG: False
+```
 
-=> Alterar o file pythonapp.yml
+<b>=> Alterar o file pythonapp.yml</b>
+```
     - name: Copying configurations
       run: |
         cp contrib/env-sample .env
 ```
 
 #  Seting para Secret key 
-```
-Secret key é utiliazada em vários pontos com necessidade de assinatura criptografa dentro do django
-- as sessoes que são arquivos que são enviados ao navegador para ele  manter o usuario logado
-- envio de mensagens
-- quando vai fazer o reset do password quando estiver o sistema de login
-- esta configuração deve ser mantida em segredo, vamos usar o python decouple para setar esta 
+
+<b>Secret key é utiliazada em vários pontos com necessidade de assinatura criptografa dentro do django</b>
+> as sessoes que são arquivos que são enviados ao navegador para ele  manter o usuario logado
+> envio de mensagens
+> quando vai fazer o reset do password quando estiver o sistema de login
+> esta configuração deve ser mantida em segredo, vamos usar o python decouple para setar esta 
   chave secreta no servidor. Para cada instancia possa definir sua chave secreta
 
-=> temos que atualizar o file o env_sample
-SECRET_KEY=defina sua chave secreta 
+<b>=> temos que atualizar o file o env_sample</b>
+>SECRET_KEY=defina sua chave secreta 
 
-=> Da mesma forma temos que definir no file .env
-SECRET_KEY=CHAVE SECRETA
+<b>=> Da mesma forma temos que definir no file .env</b>
+>SECRET_KEY=CHAVE SECRETA
 
-=> Defini a Secret_Key em uma variavel de ambiente para evitar problema com Heroku
+<b>=> Defini a Secret_Key em uma variavel de ambiente para evitar problema com Heroku</b>
+```
 (CondGuai-Acu) CondGuai-Acu $ python
 Python 3.8.0 (default, Feb  3 2020, 16:24:25) 
 [GCC 7.4.0] on linux
@@ -361,7 +365,109 @@ SECRET_KEY: ***************************************************
 
 <b>=> No settings vamos configurar os dois dominios</b>
 > atual => ALLOWED_HOSTS = ['*']
->configurado => ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+> configurado => ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 <b>=> Heroku configurar ALLOWED_HOSTS</b>
 >(CondGuai-Acu) CondGuai-Acu $ heroku config:set ALLOWED_HOSTS='condguaiacu.herokuapp.com, guaiacu.lindart.com.br'
+
+# Endereço de Banco de Dados
+
+<b>No arquivo setting.py esta definido um BD padrão default, como sendo na realidade sqlite3.</b>
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+```
+
+<b> Vamos inserir a variável DATABASE-URL no settings</b> 
+
+>default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+>parse_database = partial(dj_database_url.parse, conn_max_age=600)
+>DATABASES = {'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)}
+
+<b>Inserido as libs j-database-url e psycopg2-binary</b>
+>CondGuai-Acu $ pipenv install dj-database-url
+>CondGuai-Acu $ pipenv install psycopg2-binary
+
+# Testes com Postgresql 
+
+<b>Instalar o postgresql no servidor de integraçã continua no file pythonapp.yml</b>
+```
+    services:
+      postgres:
+        image: postgres:12.0
+```
+<b>Adicionar informação no file env-sample para conter:</b>
+>DATABASE_URL=postgres://postgres:postgres@localhost/testdb
+
+# Corrigir lingua e Fuso Horário
+
+<b>configurar a língua  (file settings_py)</b>
+
+|   LANGUAGE_CODE  |    TIME_ZONE   |   
+|------------------|----------------|
+|   'en-us'        |    'UTC'       |
+
+|   LANGUAGE_CODE  |    TIME_ZONE      |   
+|------------------|-------------------|
+|   'pt-br'        |'America/Sao_Paulo'|
+
+# Comando de Coleta de Arquivos Estáticos
+
+<b>Acessando via linha de comando com o env ativado</b>
+>(CondGuai-Acu) CondGuai-Acu $ mng collectstatic
+
+<b>Criar no file settings.py</b>
+>STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+<b>Acessando via linha de comando com o env ativado</b>
+>(CondGuai-Acu) CondGuai-Acu $ mng collectstatic
+
+
+```
+130 static files copied to '/home/plautz/PycharmProjects/CondGuai-Acu/staticfiles'.
+staticfiles
+    admin  
+        css
+        fonts
+        img 
+        js
+```
+<b>inserir diretorio staticfiles no gitignore</b>
+>mediafiles/
+>
+>staticfiles/
+
+# Usuario na Amazon e  S3 criação e configuração
+
+<b> inserir no file .env</b>
+
+>AWS_ACCESS_KEY_ID=********************
+>
+>AWS_SECRET_ACCESS_KEY=****************************************
+>
+>AWS_STORAGE_BUCKET_NAME=coursedjango
+
+<b> S3 => Scalable Storage in the Cloud</b>
+
+- Criar o  S3 Bucket 
+  https://s3.console.aws.amazon.com/s3/home?region=us-east-2
+  
+- Alterar as Permissions do diretorio Bucket
+
+- Setting => Bucket Policy
+  condcguaiacu
+ 
+- Para facilitar a criação da Policy procurar no google => amazon policy generator
+step-1  Type pf Policy => S3 Bucket Policy
+step-2  Add Statements  
+  - Effect Allow
+  - Principal (copiar no user summary o User ARN)
+  - Actions => All Actions (‘*’)
+  - Amozon Resource Name (ARN) => copiar na pagina Bucket policy editor 
+  - Generate Policy
+  - Copiar o arquivo de policy (formato JSON Document) e voltar para a 
+    pagina Bucket Policy para colar a politica. E salvar esta configuração
