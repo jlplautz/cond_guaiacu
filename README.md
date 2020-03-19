@@ -516,7 +516,7 @@ if AWS_ACCESS_KEY_ID:
 <b>Atualizando a pagina do Bucket, verificamos que os arquivos foram carregados</b>
 >https://s3.console.aws.amazon.com/s3/home?region=sa-east-1
 
-b>Editar o file env_sample e inserir as configuraçoes do AWS</b>
+<b>Editar o file env_sample e inserir as configuraçoes do AWS</b>
 ```
 # Configuraçoes do AWS
 AWS_ACCESS_KEY_ID=
@@ -524,3 +524,25 @@ AWS_SECRET_ACCESS_KEY=
 AWS_STORAGE_BUCKET_NAME=
 ```
 
+# Otimizando Uploads com Collectfast 
+
+<b>setar as variaveis do AWS no servidor</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku config:set AWS_ACCESS_KEY_ID=xyz
+>
+>ondGuai-Acu) CondGuai-Acu $ heroku config:set AWS_SECRET_ACCESS_KEY=yxz
+>
+>CondGuai-Acu) CondGuai-Acu $ heroku config:set AWS_STORAGE_BUCKET_NAME=condguaiacu
+>
+>(CondGuai-Acu) CondGuai-Acu $ heroku config:unset DISABLE_COLLECTSTATIC
+
+<b>Lib Collectfast => minizar o tempo do deployment no servidor</b>
+>CondGuai-Acu $ pipenv install Collectfast
+
+<b>add 'collectfast' to your INSTALLED_APPS, before 'django.contrib.staticfiles'</b>
+>'collectfast',
+
+<b>Configuração de ambiente de desenvolvimento</b>
+>COLLECTFAST_ENABLED = False
+
+<b>STORAGE CONFIGURATION IN S3 AWS</b>
+>COLLECTFAST_ENABLED = True
