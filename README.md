@@ -385,11 +385,14 @@ DATABASES = {
 <b> Vamos inserir a variável DATABASE-URL no settings</b> 
 
 >default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+>
 >parse_database = partial(dj_database_url.parse, conn_max_age=600)
+>
 >DATABASES = {'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)}
 
 <b>Inserido as libs j-database-url e psycopg2-binary</b>
 >CondGuai-Acu $ pipenv install dj-database-url
+>
 >CondGuai-Acu $ pipenv install psycopg2-binary
 
 # Testes com Postgresql 
@@ -471,3 +474,53 @@ step-2  Add Statements
   - Generate Policy
   - Copiar o arquivo de policy (formato JSON Document) e voltar para a 
     pagina Bucket Policy para colar a politica. E salvar esta configuração
+    
+# Instalar a lib django_s3_folder_storage 
+
+>CondGuai-Acu $ pipenv install django_s3_folder_storage
+
+<b>inserir no file settings.py</b>
+```
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+
+# STORAGE CONFIGURATION IN S3 AWS
+# ================================================================
+if AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', }
+    AWS_PRELOAD_METADATA = True
+    AWS_AUTO_CREATE_BUCKET = False
+    AWS_QUERYSTRING_AUTH = True
+    AWS_S3_CUSTOM_DOMAIN = None
+#    COLLECTFAST_ENABLED = True
+    AWS_DEFAULT_ACL = 'private'
+
+    # Static Assets
+    # ===========================================================
+    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+    STATIC_S3_PATH = 'static'
+    STATIC_ROOT = f'/{STATIC_S3_PATH}/'
+    STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+    # Upload_Media_Filder
+    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
+    DEFAULT_S3_PATH = 'media'
+    MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
+    MEDIA_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/'
+
+    INSTALLED_APPS.append('s3_folder_storage')
+    INSTALLED_APPS.append('storages')
+```
+<b>Atualizando a pagina do Bucket, verificamos que os arquivos foram carregados</b>
+>https://s3.console.aws.amazon.com/s3/home?region=sa-east-1
+
+b>Editar o file env_sample e inserir as configuraçoes do AWS</b>
+```
+# Configuraçoes do AWS
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_STORAGE_BUCKET_NAME=
+```
+
