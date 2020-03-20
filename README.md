@@ -626,5 +626,7 @@ Superuser created successfully.
 
 <b>Aplicar as migraçoes de forma automatica, adicionar no Procfile file</b>
 >release: python manage.py migrate --noinput
+> Atenção
+>Depois de alterar o Procfile é necessário fazer o commit da branch para atualizar o Heroku
 
 <b>criar super-user no banco do heroku</b>
