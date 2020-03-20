@@ -630,3 +630,27 @@ Superuser created successfully.
 >Depois de alterar o Procfile é necessário fazer o commit da branch para atualizar o Heroku
 
 <b>criar super-user no banco do heroku</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku run python manage.py createsuperuser
+>
+>Endereço de email: admin#admin.com
+>Password: 
+>Password (again): 
+
+# Backup do Postgresql
+
+<b>comando para backup no heroku</b>
+>heroku pg:backups:schedule DATABASE_URL --at '02:00 America/Sao_Paulo'
+
+<b>para conferir o horario dos backups</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku pg:backups:schedules
+
+<b>como verificar os backups</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku pg:backups
+
+<b>como fazer o download dos backups</b>
+>(CondGuai-Acu) CondGuai-Acu $ heroku pg:backups:url a001
+
+
+
+
+
