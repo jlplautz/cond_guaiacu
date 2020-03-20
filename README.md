@@ -8,17 +8,16 @@ Aplicação para gerenciar condominio do Edifício Colina do Guai-Açu
 
 
 
-<h1>Procedimento executado</h1>
+#Procedimento executado
 
+<b> File pythonapp.yml no github para Continous Integration</b>
+
+```
 name: Python application
-
 on: [pull_request]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -33,11 +32,18 @@ jobs:
       run: |
         pipenv run flake8 .
 ```
+<b>Diretório do projeto</b<
+
+```
 CondGuai-Acu $ tree
 .
 ├── LICENSE
 └── README.md
+```
 
+<b>Criação do ambiente virtual</b<
+
+```
 CondGuai-Acu $ pyenv versions
   system
 * 3.8.0 (set by /home/plautz/.pyenv/version)
@@ -63,32 +69,36 @@ Creating a Pipfile for this project…
 Launching subshell in virtual environment…
  . /home/plautz/PycharmProjects/CondGuai-Acu/.venv/bin/activate
 CondGuai-Acu $  . /home/plautz/PycharmProjects/CondGuai-Acu/.venv/bin/activate
-
+```
+<b>Criar o file pipfile.lock e Clear caches</b>
+```
 (CondGuai-Acu) CondGuai-Acu $ pipenv lock --clear
 Locking [dev-packages] dependencies…
 Locking [packages] dependencies…
 Updated Pipfile.lock (db4242)!
+```
 
-(CondGuai-Acu) CondGuai-Acu $ pipenv install --dev flake8
-+--------------------------------------------------------+
-criar o arquivo .flake8 na raiz do projeto
+<b>Instalar a lib flake8</b>
+>(CondGuai-Acu) CondGuai-Acu $ pipenv install --dev flake8
+
+<b>criar o arquivo .flake8 na raiz do projeto</b>
+```
 [flake8]
 max-line-length = 120
 exclude = .venv
-+--------------------------------------------------------+
-criar o arquivo .pyup.yml
+```
+
+<b>criar o arquivo .pyup.yml</b>
+```
 requirements:
   - Pipfile
   - Pipfile.lock
-+--------------------------------------------------------+
 ```
 
 <b>Inserir no github o Simple workflow Actions</b>
 ```
 name: Python application
-
 on: [pull_request]
-
 jobs:
   build:
 
@@ -554,12 +564,50 @@ AWS_STORAGE_BUCKET_NAME=
 >
 >Fazer as adptações pois a nasse User nao tem atributo username
 
-|-------------------------------|----------------------------|
 |   USERNAME_FIELD = 'username' |   USERNAME_FIELD = 'email' |
-|-------------------------------|----------------------------|
 
 <b>Criar a classe UserManager herdando  da class UserManager(BaseUsermanager)</b>
 >Fazer as adptações pois a nasse User nao tem atributo username
 
 <b>file settings informar ao frameworking qual será a classe base utilizada  como usuario</b>
 >AUTH_USER_MODEL = 'base.User'
+
+# Comando makemigrations
+
+<b>como criar e inspecionar migrações de banco de dados</b>
+>mng showmigrations
+```
+(CondGuai-Acu) CondGuai-Acu $ mng makemigrations base
+Migrations for 'base':
+  GuaiAcu/base/migrations/0001_initial.py
+    - Create model User
+(CondGuai-Acu) CondGuai-Acu $ docker 
+```
+
+# Conexão com Banco e Migrações 
+
+- Menu => DataBase (+) escolher o banco SQLite
+- inserir name => guaiacu.sqlite
+- navegar no projeto  ate encontrat o file 
+  /home/plautz/PycharmProjects/CondGuai-Acu/db.sqlite3
+- fazer um Test Connection
+
+<b>aplicar as migraçoes para o banco de dados => mng migrate</b>
+>(CondGuai-Acu) CondGuai-Acu $ mng migrate
+>(CondGuai-Acu) CondGuai-Acu $ mng showmigrations
+>base
+ [X] 0001_initial
+
+b>criar um usuario (superuser) </b>
+```
+(CondGuai-Acu) CondGuai-Acu $ mng createsuperuser
+Endereço de email: admin@admin.com
+Password: 
+Password (again): 
+A senha é muito parecida com endereço de email
+Esta senha é muito curta. Ela precisa conter pelo menos 8 caracteres.
+Esta senha é muito comum.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+```
+
