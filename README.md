@@ -598,7 +598,7 @@ Migrations for 'base':
 >base
  [X] 0001_initial
 
-b>criar um usuario (superuser) </b>
+<b>criar um usuário (superuser) </b>
 ```
 (CondGuai-Acu) CondGuai-Acu $ mng createsuperuser
 Endereço de email: admin@admin.com
@@ -611,3 +611,20 @@ Bypass password validation and create user anyway? [y/N]: y
 Superuser created successfully.
 ```
 
+#  Admin do Usuário 
+<b>Procedimento para customizar a tabela usuarios</b>
+
+- copiar a class UserAdmin(admin.ModeAdmin)django.contrib.auth.admin
+  copiar toda a classe
+- remover o i import Group, User
+|   from django.contrib.auth.models import Group, User | 
+- importar => from pyprg.base.models import User
+- remover a class GroupAmin para não sobrescrever
+- consertar alguma propriedades da classe UserAdmin
+
+# Aplicando Migrações no Heroku 
+
+<b>Aplicar as migraçoes de forma automatica, adicionar no Procfile file</b>
+>release: python manage.py migrate --noinput
+
+<b>criar super-user no banco do heroku</b>
