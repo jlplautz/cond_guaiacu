@@ -650,7 +650,29 @@ Superuser created successfully.
 <b>como fazer o download dos backups</b>
 >(CondGuai-Acu) CondGuai-Acu $ heroku pg:backups:url a001
 
+# Django Debug Toolbar 
 
+<b>instalar a lib django debug toolbar</b>
+>CondGuai-Acu $ pipenv install django-debug-toolbar
 
+```
+# Configuração Django Debug Toolbar
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+```
+<b>inserir no arquivo urls.py</b>
+```
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)))
+```
+<b>inserir a variavel INTERNAL_IPS</b>
+>INTERNAL_IPS=127.0.0.1
 
-
+<b>inserir na views.py content_type=’text/html’</b>
+```
+def home(request):
+    return HttpResponse('<html><body>Olá Django</body></html>', content_type=’text/html’)
+```

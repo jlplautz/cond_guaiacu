@@ -78,6 +78,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'GuaiAcu.wsgi.application'
 
+# Configuração Django Debug Toolbar
+INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -119,6 +124,7 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 
 USE_L10N = True
+
 
 USE_TZ = True
 
