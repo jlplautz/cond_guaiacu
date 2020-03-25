@@ -5,7 +5,7 @@ from GuaiAcu.django_assertions import assert_contains
 
 @pytest.fixture
 def resp(client):
-    resp = client.get(reverse('home'))
+    resp = client.get(reverse('base:home'))
     return resp
 
 
@@ -35,4 +35,4 @@ def test_titulo(resp):
 
 
 def test_home_link(resp):
-    assert_contains(resp, f'href="{reverse("home")}">Condomínio Guai-Açu</a>')
+    assert_contains(resp, f'href="{reverse("base:home")}">Condomínio Guai-Açu</a>')
