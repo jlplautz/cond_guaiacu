@@ -742,3 +742,18 @@ def test_titulo(client: Client):
     resp = client.get('/')
     assert_contains(resp, '<title>Condominio Guai-Açu</title>')
 ```
+
+# Encapsulando Urls em Apps
+
+- Criar o file urls.py dentro da app base e copiar o conteudo da urls.py da raiz
+- definir uma variavel a nivel de modulo chamada app_name
+- vamos utilizar a função include presente no pacote django.url.conf 
+  onde vamos passar a string pyprg.base.urls.
+```  
+from django.urls import path
+from GuaiAcu.base.views import home
+app_name = 'base'
+urlpatterns = [
+    path('', home, name='home'),
+]
+```

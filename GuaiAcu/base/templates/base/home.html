@@ -10,7 +10,7 @@
 
     <meta name="description" content="Gerenciamento do Condominio Colina do Guai-Açu">
     <meta name="author" content="Jorge Luiz Plautz">
-
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" />
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -22,7 +22,7 @@
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'home' %}">Condomínio Guai-Açu</a>
+      <a class="navbar-brand" href="{% url 'base:home' %}">Condomínio Guai-Açu</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,19 +45,19 @@
 				<p>
 					Estamos na fase de elaboração da Home Page deste site que  gerencia do Cond. Colina do Guai-Açu
 				</p>
-				<p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
+                <p>
+                    <img src="{% static 'img/lateral3.png' %}">
+                </p>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
 						<h5 class="card-header">
-							Card title
+							Informações do Prédio
 						</h5>
 						<div class="card-body">
 							<p class="card-text">
-								Card content
+								<img src="{% static 'img/lateral3.png' %}" />
 							</p>
 						</div>
 						<div class="card-footer">
