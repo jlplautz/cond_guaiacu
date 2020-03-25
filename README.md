@@ -4,8 +4,6 @@ Aplicação para gerenciar condominio do Edifício Colina do Guai-Açu
 ![Python application](https://github.com/jlplautz/CondGuai-Acu/workflows/Python%20application/badge.svg)
 [![Updates](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/shield.svg)](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/)
 [![Python 3](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/python-3-shield.svg)](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/)
-[![codecov](https://codecov.io/gh/jlplautz/course-django/branch/master/graph/badge.svg)](https://codecov.io/gh/jlplautz/course-django)
-
 
 
 #Procedimento executado
@@ -675,4 +673,72 @@ if settings.DEBUG:
 ```
 def home(request):
     return HttpResponse('<html><body>Olá Django</body></html>', content_type=’text/html’)
+```
+
+# Monitorando Erros com Sentry 
+
+<b> Instalar a lib  sentry-sdk
+
+>(CondGuai-Acu) CondGuai-Acu $ pipenv install sentry-sdk
+
+- inserir a variavel de ambiente a chave dsn no file .env
+- inserir a varialvel de ambiente a chave dsn no file env-sample
+- inserir na file setting.py
+```
+SENTRY_DSN = config('SENTRY_DSN', default=None)
+if SENTRY_DSN:
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
+```
+
+# Construir Landpage do projeto
+
+- Twitter Bootstrap e Layoutit 
+  https://getbootstrap.com/documentation
+  https://www.layoutit.com/
+
+Obs: depois de elaborada a pagina no Layoutit podemos copiar o html ou fazer 
+     o download do arwquivo *.zip
+
+# Instalar Arquivos Estáticos Localmente
+
+- copiar a pasta SRC para dentro da app base
+- criar um diretorio templates
+- criar um diretorio base dentro do templates
+- copiar a file index.html para dentro do diretorio templates/base
+- e outros steps...
+
+# Template Tag Static
+
+a template tag "static" para fazer seus arquivos estáticos funcionarem na home
+
+- Carregar os arquivos estaticos na aplicação
+>(CondGuai-Acu) CondGuai-Acu $ mng collectstatic
+
+- usar as templates tags do Django – que tem a directiva {%  %})
+```
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %} "></script>
+    <script src="{% static 'js/bootstrap.min.js' %} "></script>
+    <script src="{% static 'js/scripts.js' %} "></script>
+```
+
+# Criação de Função para Testar Conteúdo
+```
+def test_titulo(client: Client):
+    """
+    Vamos testar o titulo da homepage e vamos utilizar aquela função assertContains
+    Esta função recebe a resposta que foi gerada atraves da  execusão do metodo da views
+    e como segundo parametro ela vai se certificar se existe uma string dentro desta
+    responta com um formato especifico
+    :param client:
+    :return:
+    """
+    resp = client.get('/')
+    assert_contains(resp, '<title>Condominio Guai-Açu</title>')
 ```
