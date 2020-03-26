@@ -757,3 +757,39 @@ urlpatterns = [
     path('', home, name='home'),
 ]
 ```
+
+# Rodapé
+
+<b>alguns elementos de HTML, CSS e classes do Twitter Bootstrap.</b>
+
+- alterar class = “container-fluid” para class=  “container”
+- criar um rodape
+```
+ <footer class="main-footer mt-5 pt-4">
+      <div class="container">
+          <div class="row">
+              <div class="col text-light">
+                  <h3>Entre em Contato</h3>
+                  <address>
+                      +55 41 99651-4346
+                      <br />
+                      <a href="mailto:jorge.plautz@gmail.com" class="text-light">jorge.plautz@gmail.com</a>
+                  </address>
+              </div>
+          </div>
+      </div>
+      <div class="rights pb-4 text-light">
+      <div class="container">
+          <div class="row">
+              <div class="col">
+                  {% now 'Y' %} Ed.Colina do Guai-Açu. Todos os direitos reservados.
+              </div>
+          </div>
+      </div>
+  </footer>
+```
+- Inserir no file style.css
+```
+.main-footer{background-color: #50c93d;}
+.rights{background-color: #28a745;}
+```
