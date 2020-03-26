@@ -793,3 +793,21 @@ urlpatterns = [
 .main-footer{background-color: #50c93d;}
 .rights{background-color: #28a745;}
 ```
+# Herança de Templates
+
+para evitar copiar código entre páginas respeitando o princípio DRY (Don't Repeat Yourself).
+
+- copiar a a home.html para base.html
+- pagina home.html vamos alterar o conteudo inteiro da pagina. 
+  E deixar na home somente a diretiva que indica a herança de templates.
+>   {% extends 'base/base.html' %}
+
+# Bloco de Template 
+
+<b>definir conteúdos que devem ser diferente em cada página web utilizando os blocos de template.</b>
+
+- Alterar na base.html 
+  <title>{% block title %}Ed. colina do Guai-Açu{% endblock title%}</title>
+
+- Na home.html
+{% block title %}Ed. colina do Guai-Açu - Home{% endblock title%}

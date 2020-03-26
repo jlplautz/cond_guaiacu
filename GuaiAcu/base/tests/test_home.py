@@ -31,7 +31,7 @@ def test_titulo(resp):
     :param client:
     :return:
     """
-    assert_contains(resp, '<title>Condominio Guai-Açu</title>')
+    assert_contains(resp, '<title>Condominio Guai-Açu - Home</title>')
 
 
 def test_home_link(resp):
