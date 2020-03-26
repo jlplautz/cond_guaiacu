@@ -34,13 +34,12 @@
 {#          </ul>#}
 {#      </div>#}
   </nav>
-
-    <div class="container-fluid">
+    <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
 				<h2>
-					Hello, world!
+					Pagina sendo eleaborada.
 				</h2>
 				<p>
 					Estamos na fase de elaboração da Home Page deste site que  gerencia do Cond. Colina do Guai-Açu
@@ -57,50 +56,38 @@
 						</h5>
 						<div class="card-body">
 							<p class="card-text">
-								<img src="{% static 'img/lateral3.png' %}" />
+								<img src="{% static 'img/luciano-ramalho.png' %}" />
 							</p>
-						</div>
-						<div class="card-footer">
-							Card footer
 						</div>
 					</div>
 				</div>
 			</div>
-			<ul class="nav flex-column">
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Profile</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled" href="#">Messages</a>
-				</li>
-				<li class="nav-item dropdown ml-md-auto">
-					 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						 <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider">
-						</div> <a class="dropdown-item" href="#">Separated link</a>
-					</div>
-				</li>
-			</ul>
-			<nav>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<a href="#">Home</a>
-					</li>
-					<li class="breadcrumb-item">
-						<a href="#">Library</a>
-					</li>
-					<li class="breadcrumb-item active">
-						Data
-					</li>
-				</ol>
-			</nav>
 		</div>
 	</div>
 </div>
-
   </body>
+
+  <footer class="main-footer mt-5 pt-4">
+      <div class="container">
+          <div class="row">
+              <div class="col text-light">
+                  <h3>Entre em Contato</h3>
+                  <address>
+                      +55 41 99651-4346
+                      <br />
+                      <a href="mailto:jorge.plautz@gmail.com" class="text-light">jorge.plautz@gmail.com</a>
+                  </address>
+              </div>
+          </div>
+      </div>
+      <div class="rights pb-4 text-light">
+      <div class="container">
+          <div class="row">
+              <div class="col">
+                  {% now 'Y' %} Ed.Colina do Guai-Açu. Todos os direitos reservados.
+              </div>
+          </div>
+      </div>
+
+  </footer>
 </html>
