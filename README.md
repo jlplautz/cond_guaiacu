@@ -811,3 +811,17 @@ para evitar copiar código entre páginas respeitando o princípio DRY (Don't Re
 
 - Na home.html
 {% block title %}Ed. colina do Guai-Açu - Home{% endblock title%}
+
+# Composição de templates
+
+como compor templates utilizando a diretiva "include" e como funciona o compartilhamento de contexto
+
+- inserir um novo teste para garantir um link no rodape da pagina de um e-mail
+- Vamos transformar este e-mail em uma variavel. 
+><a href="mailto:{{ contato_email }}" class="text-light">{{ contato_email }}</a>
+- criar um novo template footer.html e mover o footer do base.html para o novo template
+- para evitar o compartilhamento de contexto entre os templates vamos fazer:
+> {% include 'base/footer.html' only %}
+- Podemos mencionar qual a parte do contexto que queremos compartilhar, 
+  com a palavra with
+>{% include 'base/footer.html' with contato_email=contato_email only %}
