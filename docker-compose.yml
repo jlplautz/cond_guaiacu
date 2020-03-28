@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  database:
+    container_name: guaiacu_database
+    image: postgres
+    restart: always
+    volumes:
+      - ./.pgdata:/var/lib/postgresql/data
+    environment:
+      - LC_ALL=C.UTF-8
+      - POSTGRES_PASSWORD=lingara
+      - POSTGRES_USER=jlplautz
+    ports:
+      - 5434:5432
