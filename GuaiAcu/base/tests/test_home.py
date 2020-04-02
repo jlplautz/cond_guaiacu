@@ -35,7 +35,7 @@ def test_titulo(resp):
 
 
 def test_home_link(resp):
-    assert_contains(resp, f'href="{reverse("base:home")}">Condomínio Guai-Açu</a>')
+    assert_contains(resp, f'href="{reverse("base:home")}">Guai-Açu</a>')
 
 
 def test_email_link(resp):
