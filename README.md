@@ -5,7 +5,6 @@ Aplicação para gerenciar condominio do Edifício Colina do Guai-Açu
 [![Updates](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/shield.svg)](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/)
 [![Python 3](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/python-3-shield.svg)](https://pyup.io/repos/github/jlplautz/CondGuai-Acu/)
 
-
 #Procedimento executado
 
 <b> File pythonapp.yml no github para Continous Integration</b>
