@@ -2,7 +2,7 @@ asgiref==3.2.7
 attrs==19.3.0
 boto3==1.12.35
 botocore==1.15.35
-certifi==2019.11.28
+certifi==2020.6.20
 chardet==3.0.4
 codecov==2.0.22
 Collectfast==2.1.0
