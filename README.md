@@ -892,3 +892,6 @@ Running migrations:
   Applying admin.0003_logentry_add_action_flag_choices... OK
   Applying sessions.0001_initial... OK
 ```
+
+# Criado App despesas
+  - Esta api vai prover o CRUD para todas as despesas

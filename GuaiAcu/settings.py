@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'GuaiAcu.base',
+    'GuaiAcu.despesas',
 ]
 
 MIDDLEWARE = [
